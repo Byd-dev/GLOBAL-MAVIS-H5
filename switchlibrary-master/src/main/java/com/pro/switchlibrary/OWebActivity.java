@@ -83,7 +83,6 @@ public class OWebActivity extends BaseActivity {
 
 
     private static OWebActivity instance;
-    private TextView text_err;
 
     private RelativeLayout layout;
 
@@ -510,12 +509,7 @@ public class OWebActivity extends BaseActivity {
                 + "位置:" + SPUtils.getString(AppConfig.LOCATION)
                 + "MAC:" + DeviceUtil.getMACAddress(), Toast.LENGTH_SHORT).show();*/
 
-        text_err.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mWebView.reload();
-            }
-        });
+
 
         //  mWebView=findViewById(R.id.webview);
      /*   mWebView = new WebView(getApplicationContext());
@@ -534,8 +528,7 @@ public class OWebActivity extends BaseActivity {
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
                 if (request.isForMainFrame()) {
-                    text_err.setVisibility(View.VISIBLE);
-                    mWebView.setVisibility(View.INVISIBLE);
+
                 }
 
             }
@@ -546,50 +539,59 @@ public class OWebActivity extends BaseActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     return;
                 }
-                text_err.setVisibility(View.VISIBLE);
-                mWebView.setVisibility(View.INVISIBLE);
+
             }
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                final SslErrorHandler mHandler ;
-                mHandler= handler;
-                AlertDialog.Builder builder = new AlertDialog.Builder(OWebActivity.this);
-                builder.setMessage("ssl证书验证失败");
-                builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(OWebActivity.this);
+                String message = "SSL Certificate error.";
+                switch (error.getPrimaryError()) {
+                    case SslError.SSL_UNTRUSTED:
+                        message = "The certificate authority is not trusted.";
+                        break;
+                    case SslError.SSL_EXPIRED:
+                        message = "The certificate has expired.";
+                        break;
+                    case SslError.SSL_IDMISMATCH:
+                        message = "The certificate Hostname mismatch.";
+                        break;
+                    case SslError.SSL_NOTYETVALID:
+                        message = "The certificate is not yet valid.";
+                        break;
+                    case SslError.SSL_DATE_INVALID:
+                        message = "The date of the certificate is invalid";
+                        break;
+                    case SslError.SSL_INVALID:
+                    default:
+                        message = "A generic error occurred";
+                        break;
+                }
+                message += " Do you want to continue anyway?";
+
+                builder.setTitle("SSL Certificate Error");
+                builder.setMessage(message);
+
+                builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mHandler.proceed();
+                        handler.proceed();
                     }
                 });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mHandler.cancel();
+                        handler.cancel();
                     }
                 });
-                builder.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                        if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                            mHandler.cancel();
-                            dialog.dismiss();
-                            return true;
-                        }
-                        return false;
-                    }
-
-
-                });
-                AlertDialog dialog = builder.create();
+                final AlertDialog dialog = builder.create();
                 dialog.show();
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                text_err.setVisibility(View.INVISIBLE);
-                mWebView.setVisibility(View.VISIBLE);
+
 
             }
 
@@ -771,7 +773,6 @@ public class OWebActivity extends BaseActivity {
 
         mWebView = findViewById(R.id.webview);
 
-        text_err = findViewById(R.id.text_err);
         layout = findViewById(R.id.layout);
 
 
