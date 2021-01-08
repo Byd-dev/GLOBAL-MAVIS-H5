@@ -542,7 +542,7 @@ public class OWebActivity extends BaseActivity {
 
             }
 
-            @Override
+           /* @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(OWebActivity.this);
                 String message = "SSL Certificate error.";
@@ -586,7 +586,7 @@ public class OWebActivity extends BaseActivity {
                 });
                 final AlertDialog dialog = builder.create();
                 dialog.show();
-            }
+            }*/
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {

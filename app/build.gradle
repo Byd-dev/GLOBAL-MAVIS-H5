@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.xhqhQH.futures"
+        applicationId "com.bsjrj.coin"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -23,7 +23,7 @@ android {
 
         buildConfigField "String", "AK", '"AtGlf0AeZaZGVWH9iwFKboyp"'//百度AI AK
         buildConfigField "String", "SK", '"Fiq4CgzCxeKzal8VKAxj7DgbzAXoKVkH"'//百度AI SK
-        buildConfigField "String", "WEB_URL", '"https://sr.galaxyqh.com/"'//马甲包地址
+        buildConfigField "String", "WEB_URL", '"https://bsjzx.zeq36.cn/"'//马甲包地址
         buildConfigField "String[]", "CHECKVERSION_URL_LIST", 'new String[]{"https://api.xinghestar.com", "https://api.oifutures.cn"}'
 //开关地址
         buildConfigField "String[]", "BLOG_URL_LIST", 'new String[]{"http://blog.sina.com.cn/s/blog_68af79e70102z8zg.html", "http://yujianguangxx.blog.sohu.com/327469515.html"}'
@@ -36,16 +36,16 @@ android {
                 buildConfigField "String", "QUDAO", '"XHQHaz"'
             }
             qh360 {
-                buildConfigField "String", "QUDAO", '"BSJZX360"'
+                buildConfigField "String", "QUDAO", '"BSJRJ360"'
             }
             yingyongbao {
-                buildConfigField "String", "QUDAO", '"BSJZXyyb"'
+                buildConfigField "String", "QUDAO", '"BSJRJyyb"'
             }
             huawei {
-                buildConfigField "String", "QUDAO", '"BSJZXhw"'
+                buildConfigField "String", "QUDAO", '"BSJRJhw"'
             }
             xiaomi {
-                buildConfigField "String", "QUDAO", '"BSJZXxm"'
+                buildConfigField "String", "QUDAO", '"BSJRJmi"'
             }
             oppo {
                 buildConfigField "String", "QUDAO", '"qh"'
