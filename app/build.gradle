@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.bsjrj.coin"
+        applicationId "com.huobifb.coin"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -23,7 +23,7 @@ android {
 
         buildConfigField "String", "AK", '"AtGlf0AeZaZGVWH9iwFKboyp"'//百度AI AK
         buildConfigField "String", "SK", '"Fiq4CgzCxeKzal8VKAxj7DgbzAXoKVkH"'//百度AI SK
-        buildConfigField "String", "WEB_URL", '"https://bsjzx.zeq36.cn/"'//马甲包地址
+        buildConfigField "String", "WEB_URL", '"https://m.huobi.com"'//马甲包地址
         buildConfigField "String[]", "CHECKVERSION_URL_LIST", 'new String[]{"https://api.xinghestar.com", "https://api.oifutures.cn"}'
 //开关地址
         buildConfigField "String[]", "BLOG_URL_LIST", 'new String[]{"http://blog.sina.com.cn/s/blog_68af79e70102z8zg.html", "http://yujianguangxx.blog.sohu.com/327469515.html"}'
@@ -33,16 +33,25 @@ android {
 
         productFlavors {
             universal {
-                buildConfigField "String", "QUDAO", '"XHQHaz"'
+                buildConfigField "String", "QUDAO", '"HBFBjl"'
+            }
+            jl {
+                buildConfigField "String", "QUDAO", '"HBFBjl"'
+            }
+            yyh {
+                buildConfigField "String", "QUDAO", '"HBFByyh"'
+            }
+            lx {
+                buildConfigField "String", "QUDAO", '"HBFBlx"'
             }
             qh360 {
-                buildConfigField "String", "QUDAO", '"BSJRJ360"'
+                buildConfigField "String", "QUDAO", '"HBFByyh"'
             }
             yingyongbao {
-                buildConfigField "String", "QUDAO", '"BSJRJyyb"'
+                buildConfigField "String", "QUDAO", '"BSJZXyyb"'
             }
             huawei {
-                buildConfigField "String", "QUDAO", '"BSJRJhw"'
+                buildConfigField "String", "QUDAO", '"HBFBlx"'
             }
             xiaomi {
                 buildConfigField "String", "QUDAO", '"BSJRJmi"'
@@ -57,7 +66,7 @@ android {
                 buildConfigField "String", "QUDAO", '"VIPMvv"'
             }
             meizu {
-                buildConfigField "String", "QUDAO", '"BSJZXmz"'
+                buildConfigField "String", "QUDAO", '"HBFBmz"'
             }
             xiaoshichang {
                 buildConfigField "String", "QUDAO", '"qh"'
