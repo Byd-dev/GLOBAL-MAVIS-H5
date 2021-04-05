@@ -59,9 +59,9 @@ public class SwitchMainEnter  implements DeviceUtil.AppIdsUpdater {
         this.activity=context;
         SPUtils.init(context);
         JLibrary.InitEntry(context);
-        initCrashHandler();
+        //initCrashHandler();
 
-        getLocation(context);
+        //getLocation(context);
 
         //初始化设备
         int i = new DeviceUtil(this).DirectCall(context);
